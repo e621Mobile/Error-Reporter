@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Reports</title>
+    </head>
+    <body>
+        {% for app in apps %}
+            <a href="{% url 'error_report.views.app' app.app_id %}">
+                {{app.app_id}}
+            </a>
+            <br/>
+        {% endfor %}
+    </body>
+</html>

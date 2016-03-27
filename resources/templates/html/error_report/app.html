@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{{app_id}} Reports</title>
+    </head>
+    <body>
+        <form>
+            Page: <select name="page">
+                {%for i in page_loop %}]
+                    <option value="{{i}}"
+                            {% if i == page %} selected {%endif%}
+                            >{{i}}</option>
+                {% endfor %}
+            </select>
+            <br/>
+            With Messages: <select name="messages">
+                <option value="" {%if has_messages == None%}selected{%endif%}>-----</option>
+                <option value="1" {%if has_messages == True%}selected{%endif%}>Yes</option>
+                <option value="0" {%if has_messages == False%}selected{%endif%}>No</option>
+            </select>
+            <br/>
+            With Description: <select name="description">
+                <option value="" {%if description == None%}selected{%endif%}>-----</option>
+                <option value="1" {%if description == True%}selected{%endif%}>Yes</option>
+                <option value="0" {%if description == False%}selected{%endif%}>No</option>
+            </select>
+            <br/>
+            Tags: <input type="text" name="tags" value="{{tags}}"/>
+            <br/>
+            <input type="submit" value="Search"/>
+        </form>
+
+        {%for i in reports%}
+            <br/>
+            <a href="{%url 'error_report.views.report_page' i.hash%}">
+                {{i}}
+            </a>
+        {% endfor %}
+    </body>
+</html>

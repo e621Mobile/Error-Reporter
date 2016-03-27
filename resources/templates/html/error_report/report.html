@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+    </head>
+    <body>
+        {%for tag in report.reporttag_set.all%}
+            {{tag.tag}}
+        {%endfor%}
+        <br/>
+        <textarea>{{report.log}}</textarea>
+        <br/>
+        <br/>
+        {{report.text}}
+        <hr/>
+        <hr/>
+        <hr/>
+        {%for i in message_list%}
+            {{i.author}} @ {{i.time}}:
+            <br/>
+            <br/>
+            {{i.text}}
+            <hr/>
+        {% endfor %}
+        <hr/>
+        <hr/>
+        <form method="POST">
+            Author: <input type="text" value="admin" name="author"/>
+            <br/>
+            <textarea name="message"></textarea>
+            <br/>
+            <input type="hidden" name="report" value="{{report.hash}}">
+            <input type="submit" value="Send Message">
+        </form>
+    </body>
+</html>
